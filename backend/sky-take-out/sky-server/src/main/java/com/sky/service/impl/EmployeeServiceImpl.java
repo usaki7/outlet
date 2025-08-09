@@ -69,12 +69,14 @@ public class EmployeeServiceImpl implements EmployeeService {
         BeanUtils.copyProperties(employeeDTO, employee);
 
         // set additional data
-        employee.setStatus(StatusConstant.DISABLE);
+        employee.setStatus(StatusConstant.ENABLE);
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
         employee.setCreateTime(LocalDateTime.now());
         employee.setUpdateTime(LocalDateTime.now());
         // TODO
         employee.setCreateUser(10L);
         employee.setUpdateUser(10L);
+
+        employeeMapper.insert(employee);
     }
 }

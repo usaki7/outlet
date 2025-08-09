@@ -9,6 +9,7 @@ import com.sky.result.Result;
 import com.sky.service.EmployeeService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.EmployeeLoginVO;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -39,6 +40,7 @@ public class EmployeeController {
      * @return
      */
     @PostMapping("/login")
+    @ApiOperation("employee login")
     public Result<EmployeeLoginVO> login(@RequestBody EmployeeLoginDTO employeeLoginDTO) {
         log.info("员工登录：{}", employeeLoginDTO);
 
@@ -68,10 +70,18 @@ public class EmployeeController {
      * @return
      */
     @PostMapping("/logout")
+    @ApiOperation("employee logout")
     public Result<String> logout() {
         return Result.success();
     }
 
+    /**
+     * add employee
+     * @param employeeDTO
+     * @return
+     */
+    @PostMapping
+    @ApiOperation("add employee")
     public Result save(@RequestBody EmployeeDTO employeeDTO) {
         log.info("add new employee: {}", employeeDTO);
         employeeService.save(employeeDTO);
