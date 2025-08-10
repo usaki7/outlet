@@ -27,4 +27,11 @@ public interface EmployeeService {
      * @return
      */
     PageResult pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * activate employee or
+     * @param status
+     * @param id
+     */
+    void activatestatus(Integer status, Long id);
 }

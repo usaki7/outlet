@@ -99,4 +99,12 @@ public class EmployeeController {
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+
+    @PostMapping("/status/{status}")
+    @ApiOperation("activate employee")
+    public Result activatestatus(@PathVariable Integer status, Long id) {
+        log.info("activate employee: {},{}", id, status);
+        employeeService.activatestatus(status, id);
+        return Result.success();
+    }
 }
