@@ -11,6 +11,7 @@ import com.sky.result.Result;
 import com.sky.service.EmployeeService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.EmployeeLoginVO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,11 +101,42 @@ public class EmployeeController {
         return Result.success(pageResult);
     }
 
+    /**
+     * employee activate or
+     * @param status
+     * @param id
+     * @return
+     */
     @PostMapping("/status/{status}")
     @ApiOperation("activate employee")
     public Result activatestatus(@PathVariable Integer status, Long id) {
         log.info("activate employee: {},{}", id, status);
         employeeService.activatestatus(status, id);
+        return Result.success();
+    }
+
+    /**
+     * query employee by id
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("query employee by id")
+    public Result<Employee> getById(@PathVariable Long id) {
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    /**
+     * edit employee
+     * @param employeeDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("edit employee")
+    public Result update(@RequestBody EmployeeDTO employeeDTO) {
+        log.info("update employee: {}", employeeDTO);
+        employeeService.update(employeeDTO);
         return Result.success();
     }
 }
