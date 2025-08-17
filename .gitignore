@@ -1,1 +1,4 @@
 .idea
+frontend/nginx-1.20.2/logs
+backend/sky-take-out/sky-server/src/main/resources/application.yml
+backend/sky-take-out/sky-server/src/main/resources/application-dev.yml
